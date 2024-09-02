@@ -671,7 +671,7 @@ h2 {
 }
 
 /* INVOICE  */
-.invoice-container {
+/* .invoice-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -742,6 +742,111 @@ h2 {
 }
 .Edit-btn:hover {
   background-color: #0600b3;
+} */
+.invoice-container {
+  width: 80%;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.myyy {
+  margin-bottom: 20px;
+}
+
+.invoice-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-bottom: 15px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex-wrap: wrap; 
+}
+
+.invoice-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-details {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.invoice-details p {
+  margin: 0;
+  font-size: 16px;
+  color: #555555;
+}
+
+.customer-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.shipped-to-name,
+.invoice-date,
+.invoice-total {
+  font-weight: bold;
+  color: #34495e;
+}
+
+.invoice-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: flex-end; 
+  flex-wrap: wrap; 
+}
+
+.delete-btn,
+.view-btn,
+.Edit-btn {
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px 15px;
+  background-color: #0600b3;
+  transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover,
+.view-btn:hover,
+.Edit-btn:hover {
+  background-color: #ff4400;
+}
+
+@media (max-width: 768px) {
+  .invoice-container {
+    width: 95%;
+  }
+
+  .invoice-box {
+    flex-direction: column; 
+    align-items: flex-start;
+  }
+
+  .invoice-details {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .invoice-actions {
+    width: 100%;
+    justify-content: space-between; 
+  }
 }
 
 

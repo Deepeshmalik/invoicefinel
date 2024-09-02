@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import { useLocation, useNavigate } from "react-router-dom";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'; // Import spinner icon
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const EmailForm = () => {
   const [isLoading,setLoading] = useState(false)
   const location = useLocation();
-  const { data, downloadURL } = location.state || {}; // Get invoice data and URL from location state
+  const { data, downloadURL } = location.state || {}; 
   const [formValues, setFormValues] = useState({
     to_email: data.billedTo.email || "",
     subject: data.companyNamed || "",

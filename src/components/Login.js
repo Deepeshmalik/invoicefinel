@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'; // Import spinner icon
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'; 
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,13 +17,20 @@ export const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
-        localStorage.setItem("cName", user.displayName);
-        localStorage.setItem("photoURL", user.photoURL);
-        localStorage.setItem("email", user.email);
-        localStorage.setItem("uid",user.uid);
-        navigate("/dashboard");
-        setLoading(false)
+
+        user.getIdToken().then((token) => {
+          console.log("JWT Token:", token);
+
+          // JWT Token ko local storage me save karo
+          localStorage.setItem("token", token);
+          localStorage.setItem("cName", user.displayName);
+          localStorage.setItem("photoURL", user.photoURL);
+          localStorage.setItem("email", user.email);
+          localStorage.setItem("uid", user.uid);
+
+          navigate("/dashboard");
+          setLoading(false);
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -59,8 +66,9 @@ export const Login = () => {
             {isLoading ? (
                 <FontAwesomeIcon icon={faSpinner} spin /> // Show spinner when loading
               ) : (
-                "Submit"
+                ""
               )}
+                Login
                </button>
 
           </form>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
-import { faSpinner } from '@fortawesome/free-solid-svg-icons'; // Import spinner icon
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export const Invoice = () => {
   const [invoice, setInvoice] = useState([]);
@@ -27,7 +27,7 @@ export const Invoice = () => {
       id: doc.id,
       ...doc.data(),
     }));
-    setInvoice(data);
+    setInvoice(data);     
 
     clearTimeout(timeout);
     setLoading(false)
@@ -49,41 +49,43 @@ export const Invoice = () => {
     <div className="invoice-container">
       <div style={{display:'flex',justifyContent:'center',alignItems:'center'}} className="myyy">
       {isLoading ? (
-                <FontAwesomeIcon style={{fontSize:80}} icon={faSpinner} spin /> // Show spinner when loading
+                <FontAwesomeIcon style={{fontSize:80}} icon={faSpinner} spin /> 
               ) : (
                 " "
               )}
               </div>
       {invoice.map((data) => (
-        <div className="invoice-box" key={data.id}>
+          <div className="invoice-box" key={data.id}>
           <div className="invoice-details">
-            <p className="customer-name">{data.billedTo?.name || 'No Name Available'}</p>
-            <p className="shipped-to-name">{data.shippedTo?.name || "No Name Provided"}</p>
-            <p className="invoice-date">{new Date(data.date.seconds * 1000).toLocaleDateString()}</p>
-            <p className="invoice-total">Rs. {data.grandTotal}</p>
-          </div>
-          <div className="invoice-actions">
-            <button
-              onClick={() => deleteInvoice(data.id)}
-              className="delete-btn"
+            <p className="customer-name">{data.billedTo?.name || 'No Name Available'}</p>  
+            <p className="shipped-to-name">{data.shippedTo?.name || "No Name Provided"}</p> 
+            <p className="invoice-date">{new Date(data.date.seconds * 1000).toLocaleDateString()}</p> 
+            <p className="invoice-total">Rs. {data.grandTotal}</p> 
+          </div> 
+          <div className="invoice-actions"> 
+            <button 
+              onClick={() => deleteInvoice(data.id)} 
+              className="delete-btn" 
             >
-              Delete
-            </button>
-            <button
-              onClick={() => navigate("/dashboard/invoicedetail", { state: data })}
-              className="view-btn"
+              Delete 
+            </button> 
+            <button 
+              onClick={() => navigate("/dashboard/invoicedetail", { state: data })} 
+              className="view-btn" 
             >
-              View
+              View 
             </button>
-            <button
+            <button 
               onClick={() => navigate("/updatefile", { state: { invoice: data, isEdit: true } })}
               className="Edit-btn"
             >
-              Edit
-            </button>
+              Edit 
+            </button> 
           </div>
         </div>
       ))}
     </div>
   );
 };
+
+
